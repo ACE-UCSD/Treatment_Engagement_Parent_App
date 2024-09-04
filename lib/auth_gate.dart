@@ -4,7 +4,7 @@ import 'package:track_it/pages/home.dart';
 import 'package:track_it/pages/login_screen.dart';
 
 class AuthGate extends StatelessWidget {
-  const AuthGate({Key? key});
+  const AuthGate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,8 @@ class AuthGate extends StatelessWidget {
         }
 
         if (LoginScreen.loggedIn == true) {
-
           return const MyHomePage(title: 'Home');
         } else {
-
           return const LoginScreen();
         }
       },

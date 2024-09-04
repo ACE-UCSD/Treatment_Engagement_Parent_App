@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'TrackiT!',
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        colorScheme: const ColorScheme(
+        debugShowCheckedModeBanner: false,
+        title: 'TrackiT!',
+        theme: ThemeData(
+          primaryColor: Colors.black,
+          colorScheme: const ColorScheme(
             primary: Colors.black,
             brightness: Brightness.light,
             onPrimary: Colors.white,
@@ -33,54 +33,52 @@ class MyApp extends StatelessWidget {
             onError: Colors.yellow,
             surface: Colors.white,
             onSurface: Colors.black,
-        ),
-        textSelectionTheme:
-        const TextSelectionThemeData(cursorColor: Colors.black),
-        // fontFamily: 'SourceSansPro',
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
-          titleTextStyle: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          )
-        ),
-        textTheme: const TextTheme(
-          displaySmall: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 12.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
-          labelLarge: TextStyle(
-            // OpenSans is similar to NotoSans but the uppercases look a bit better IMO
-            fontFamily: 'OpenSans',
-            fontSize: 12.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+          textSelectionTheme:
+              const TextSelectionThemeData(cursorColor: Colors.black),
+          // fontFamily: 'SourceSansPro',
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              titleTextStyle: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              )),
+          textTheme: const TextTheme(
+            displaySmall: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 12.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            labelLarge: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 12.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            bodySmall: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 12.0,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+            displayLarge: TextStyle(fontFamily: 'Quicksand'),
+            displayMedium: TextStyle(fontFamily: 'Quicksand'),
+            headlineMedium: TextStyle(fontFamily: 'Quicksand'),
+            headlineSmall: TextStyle(fontFamily: 'NotoSans'),
+            titleLarge: TextStyle(fontFamily: 'NotoSans'),
+            titleMedium: TextStyle(fontFamily: 'NotoSans'),
+            bodyLarge: TextStyle(fontFamily: 'NotoSans'),
+            bodyMedium: TextStyle(fontFamily: 'NotoSans'),
+            titleSmall: TextStyle(fontFamily: 'NotoSans'),
+            labelSmall: TextStyle(fontFamily: 'NotoSans'),
           ),
-          bodySmall: TextStyle(
-            fontFamily: 'NotoSans',
-            fontSize: 12.0,
-            fontWeight: FontWeight.normal,
-            color: Colors.black,
-          ),
-          displayLarge: TextStyle(fontFamily: 'Quicksand'),
-          displayMedium: TextStyle(fontFamily: 'Quicksand'),
-          headlineMedium: TextStyle(fontFamily: 'Quicksand'),
-          headlineSmall: TextStyle(fontFamily: 'NotoSans'),
-          titleLarge: TextStyle(fontFamily: 'NotoSans'),
-          titleMedium: TextStyle(fontFamily: 'NotoSans'),
-          bodyLarge: TextStyle(fontFamily: 'NotoSans'),
-          bodyMedium: TextStyle(fontFamily: 'NotoSans'),
-          titleSmall: TextStyle(fontFamily: 'NotoSans'),
-          labelSmall: TextStyle(fontFamily: 'NotoSans'),
         ),
-      ),
-      navigatorObservers: [TransitionRouteObserver()],
-      home: const AuthGate(),
-    );
+        navigatorObservers: [TransitionRouteObserver()],
+        home: const AuthGate(),
+        );
   }
 }

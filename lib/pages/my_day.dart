@@ -16,8 +16,12 @@ class MyDayPage extends StatefulWidget {
 }
 
 class _MyDayPage extends State<MyDayPage> {
-  final List<TextEditingController> _timeControllers = List<TextEditingController>.generate(11, (index) => TextEditingController());
-  final List<TextEditingController> _turnsControllers = List<TextEditingController>.generate(11, (index) => TextEditingController());
+  final List<TextEditingController> _timeControllers =
+      List<TextEditingController>.generate(
+          11, (index) => TextEditingController());
+  final List<TextEditingController> _turnsControllers =
+      List<TextEditingController>.generate(
+          11, (index) => TextEditingController());
   final List<bool> _checked = List<bool>.generate(11, (index) => false);
   final List<String> _options = [
     'Breakfast',
@@ -102,7 +106,9 @@ class _MyDayPage extends State<MyDayPage> {
                 Navigator.of(context).pop();
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home Page')),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const MyHomePage(title: 'Home Page')),
                 );
               },
             ),
@@ -115,11 +121,13 @@ class _MyDayPage extends State<MyDayPage> {
   Future<void> _showErrorDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // Prevents dialog from being dismissed by tapping outside
+      barrierDismissible: false,
+      // Prevents dialog from being dismissed by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Submission Unsuccessful'),
-          content: const Text('Please enter valid numerical entries rounded to the nearest whole number.'),
+          content: const Text(
+              'Please enter valid numerical entries rounded to the nearest whole number.'),
           actions: <Widget>[
             TextButton(
               child: const Text('OK'),
@@ -141,18 +149,15 @@ class _MyDayPage extends State<MyDayPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Home Page')),
-            );
+            Navigator.pop(context);
           },
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-            colors: [Colors.blueAccent[100]!, Colors.blueAccent[100]!], // Adjust color shades as desired
-            begin: Alignment.topLeft, // Change for different gradient directions
-            end: Alignment.bottomRight,
+              colors: [Colors.blueAccent[100]!, Colors.blueAccent[100]!],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
         ),
@@ -161,18 +166,20 @@ class _MyDayPage extends State<MyDayPage> {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blueAccent[100]!, Colors.yellow[100]!], // Adjust color shades as desired
-              begin: Alignment.topLeft, // Change for different gradient directions
+              colors: [Colors.blueAccent[100]!, Colors.yellow[100]!],
+              begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
           child: SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+              constraints:
+                  BoxConstraints(minHeight: MediaQuery.of(context).size.height),
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Text(
                       'What times of day did you engage in ASE intervention?',
                       style: TextStyle(
@@ -190,7 +197,11 @@ class _MyDayPage extends State<MyDayPage> {
                         2: FlexColumnWidth(4),
                         3: FlexColumnWidth(4),
                       },
-                      border: TableBorder.all(color: Colors.white10, width: 1,),
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                      border: TableBorder.all(
+                        color: Colors.white10,
+                        width: 1,
+                      ),
                       children: [
                         const TableRow(
                           decoration: BoxDecoration(
@@ -250,7 +261,8 @@ class _MyDayPage extends State<MyDayPage> {
                         for (int index = 0; index < _options.length; index++)
                           TableRow(
                             children: [
-                              Center(
+                              Padding(
+                                padding: const EdgeInsets.all(1.0),
                                 child: Checkbox(
                                   value: _checked[index],
                                   onChanged: (bool? value) {
@@ -264,71 +276,85 @@ class _MyDayPage extends State<MyDayPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(_options[index]),
+                                padding: const EdgeInsets.all(6.0),
+                                child: Text(
+                                  _options[index],
+                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: _checked[index]
                                     ? TextField(
-                                  controller: _timeControllers[index],
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(borderSide:
-                                        BorderSide(color: Colors.black)
-                                    ),
-                                    enabledBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black26)
-                                    ),
-                                    disabledBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black)
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 3.0),
-                                    fillColor: Colors.white10,
-                                    hoverColor: Colors.black12,
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  onChanged: (value) {
-                                    _saveState();
-                                  },
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                )
+                                        controller: _timeControllers[index],
+                                        decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black26)),
+                                            disabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    vertical: 4.0,
+                                                    horizontal: 4.0),
+                                            fillColor: Colors.white10,
+                                            hoverColor: Colors.black12,
+                                            constraints: BoxConstraints(
+                                              maxHeight: 30.0,
+                                              maxWidth: 60.0,
+                                            )),
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value) {
+                                          _saveState();
+                                        },
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      )
                                     : Container(),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: _checked[index]
                                     ? TextField(
-                                  controller: _turnsControllers[index],
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black)
-                                    ),
-                                    enabledBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black26)
-                                    ),
-                                    disabledBorder: OutlineInputBorder(borderSide:
-                                    BorderSide(color: Colors.black)
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 3.0),
-                                    fillColor: Colors.white10,
-                                    hoverColor: Colors.black12,
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                  onChanged: (value) {
-                                    _saveState();
-                                  },
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                )
+                                        controller: _turnsControllers[index],
+                                        decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black26)),
+                                            disabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black)),
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    vertical: 4.0,
+                                                    horizontal: 4.0),
+                                            fillColor: Colors.white10,
+                                            hoverColor: Colors.black12,
+                                            constraints: BoxConstraints(
+                                              maxHeight: 30.0,
+                                              maxWidth: 60.0,
+                                            )),
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value) {
+                                          _saveState();
+                                        },
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      )
                                     : Container(),
                               ),
                             ],
@@ -341,8 +367,10 @@ class _MyDayPage extends State<MyDayPage> {
                     padding: const EdgeInsets.only(bottom: 20.0),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(Colors.white70),
-                          foregroundColor: WidgetStateProperty.all<Color>(Colors.white70),
+                        backgroundColor:
+                            WidgetStateProperty.all<Color>(Colors.white70),
+                        foregroundColor:
+                            WidgetStateProperty.all<Color>(Colors.white70),
                       ),
                       onPressed: () async {
                         try {
@@ -350,10 +378,10 @@ class _MyDayPage extends State<MyDayPage> {
                           for (int i = 0; i < _options.length; i++) {
                             if (_checked[i] == true) {
                               userData[_options[i]] = {
-                                'TimeSpent': int.parse(
-                                    _timeControllers[i].text),
-                                'TurnsTaken': int.parse(
-                                    _turnsControllers[i].text),
+                                'TimeSpent':
+                                    int.parse(_timeControllers[i].text),
+                                'TurnsTaken':
+                                    int.parse(_turnsControllers[i].text),
                               };
                             } else {
                               userData[_options[i]] = {

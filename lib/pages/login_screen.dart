@@ -1,14 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter/scheduler.dart' show SchedulerBinding, timeDilation;
 import 'package:flutter_login/flutter_login.dart';
 import 'package:track_it/pages/custom_route.dart';
 import 'package:track_it/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
 
   @override
   State<LoginScreen> createState() => _LoginScreen();
@@ -17,22 +16,43 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-
-
   Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfLoggedIn();
+  }
+
+  Future<void> _checkIfLoggedIn() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Use SchedulerBinding to ensure the navigation happens after the current frame
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(title: "Home Page"),
+          ),
+        );
+      });
+    }
+  }
+
 
   Future<String?> _loginUser(LoginData data) {
     return Future.delayed(loginTime).then((_) async {
       try {
-        final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        final credential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: data.name,
           password: data.password,
         );
         if (credential.user?.emailVerified == false) {
           await credential.user?.sendEmailVerification();
           return 'Please verify your email';
+        } else {
+          LoginScreen.loggedIn = true;
         }
-        LoginScreen.loggedIn = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found');
@@ -46,23 +66,33 @@ class _LoginScreen extends State<LoginScreen> {
         print(e);
         return 'An error occurred: ${e.toString()}';
       }
+      return null;
     });
   }
 
   Future<String?> _signupUser(SignupData data) {
     return Future.delayed(loginTime).then((_) async {
       try {
-        final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: data.name!,
           password: data.password!,
         );
         await credential.user?.sendEmailVerification();
+        final userId = credential.user!.uid;
+        await FirebaseFirestore.instance.collection('users').doc(userId).set({
+          'username': data.name?.split('@')[0],
+          'type': 'x',
+          // x denotes parent, y denotes psychologist
+          // manually change in firebase upon psych sign up
+        });
         LoginScreen.loggedIn = false;
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Signup Successful'),
-            content: const Text('User successfully created. Please verify your email before logging in.'),
+            content: const Text(
+                'User successfully created. Please verify your email before logging in.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -102,84 +132,80 @@ class _LoginScreen extends State<LoginScreen> {
     return Scaffold(
         body: Center(
             child: FlutterLogin(
-              title: 'Autism Center of Excellence',
-              userType: LoginUserType.email,
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              logo: const AssetImage('lib/images/health_logo.png',),
-              navigateBackAfterRecovery: true,
-              loginAfterSignUp: false,
-              userValidator: (value) {
-                if ((!value!.contains('@')) || (!value.endsWith('.com') && !value.endsWith('.edu'))) {
-                  return "Email must contain '@' and end with '.com' or '.edu'";
-                }
-                return null;
-              },
-              passwordValidator: (value) {
-                if (value!.isEmpty) {
-                  return 'Password is empty';
-                }
-                return null;
-              },
-              onLogin: (loginData) {
-                debugPrint('Login info');
-                debugPrint('Email: ${loginData.name}');
-                debugPrint('Password: ${loginData.password}');
-                return _loginUser(loginData);
-              },
-              onSignup: (signupData) {
-                debugPrint('Signup info');
-                debugPrint('Email: ${signupData.name}');
-                debugPrint('Password: ${signupData.password}');
+      title: 'Autism Center of Excellence',
+      userType: LoginUserType.email,
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+      logo: const AssetImage(
+        'lib/images/health_logo.png',
+      ),
+      navigateBackAfterRecovery: true,
+      loginAfterSignUp: false,
+      userValidator: (value) {
+        if ((!value!.contains('@')) ||
+            (!value.endsWith('.com') && !value.endsWith('.edu') && !value.endsWith('.gov'))) {
+          return "Invalid Email";
+        }
+        return null;
+      },
+      passwordValidator: (value) {
+        if (value!.isEmpty) {
+          return 'Password is empty';
+        }
+        return null;
+      },
+      onLogin: (loginData) {
+        debugPrint('Login info');
+        debugPrint('Email: ${loginData.name}');
+        debugPrint('Password: ${loginData.password}');
+        return _loginUser(loginData);
+      },
+      onSignup: (signupData) {
+        debugPrint('Signup info');
+        debugPrint('Email: ${signupData.name}');
+        debugPrint('Password: ${signupData.password}');
 
-                if (signupData.termsOfService.isNotEmpty) {
-                  debugPrint('Terms of service: ');
-                  for (final element in signupData.termsOfService) {
-                    debugPrint(
-                      ' - ${element.term.id}: ${element.accepted == true ? 'accepted' : 'rejected'}',
-                    );
-                  }
-                }
-                return _signupUser(signupData);
-              },
-              onSubmitAnimationCompleted: () {
-                Navigator.of(context).pushReplacement(
-                  FadePageRoute(
-                    builder: (context) => const MyHomePage(title: "Home Page"),
-                  ),
-                );
-              },
-              onRecoverPassword: (name) {
-                debugPrint('Recover password info');
-                debugPrint('Name: $name');
-                return _recoverPassword(name);
-                // Show new password dialog
-              },
-              headerWidget: const IntroWidget(),
-              theme: LoginTheme(
-                  textFieldStyle: const TextStyle(
-                      color: Colors.black
-                  ),
-                  inputTheme: const InputDecorationTheme(
-                    fillColor: Colors.white10,
-                    iconColor: Colors.black,
-                  ),
-                  accentColor: Colors.white,
-                  switchAuthTextColor: Colors.black,
-                  pageColorLight: Colors.blueAccent[400]!,
-                  primaryColor: Colors.black,
-                  pageColorDark: Colors.yellow[400]!,
-                  titleStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  cardTheme: const CardTheme(
-                      color: Colors.white
-                  )
-              ),
-            )
-        )
-    );
+        if (signupData.termsOfService.isNotEmpty) {
+          debugPrint('Terms of service: ');
+          for (final element in signupData.termsOfService) {
+            debugPrint(
+              ' - ${element.term.id}: ${element.accepted == true ? 'accepted' : 'rejected'}',
+            );
+          }
+        }
+        return _signupUser(signupData);
+      },
+      onSubmitAnimationCompleted: () {
+        Navigator.of(context).pushReplacement(
+          FadePageRoute(
+            builder: (context) => const MyHomePage(title: "Home Page"),
+          ),
+        );
+      },
+      onRecoverPassword: (name) {
+        debugPrint('Recover password info');
+        debugPrint('Name: $name');
+        return _recoverPassword(name);
+        // Show new password dialog
+      },
+      headerWidget: const IntroWidget(),
+      theme: LoginTheme(
+          textFieldStyle: const TextStyle(color: Colors.black),
+          inputTheme: const InputDecorationTheme(
+            fillColor: Colors.white10,
+            iconColor: Colors.black,
+          ),
+          accentColor: Colors.white,
+          switchAuthTextColor: Colors.black,
+          pageColorLight: Colors.blueAccent[400]!,
+          primaryColor: Colors.black,
+          pageColorDark: Colors.yellow[400]!,
+          titleStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          cardTheme: const CardTheme(color: Colors.white)),
+    )));
   }
 }
 
@@ -192,7 +218,6 @@ class IntroWidget extends StatelessWidget {
       children: [
         Row(
           children: <Widget>[
-            Expanded(child: Divider()),
             Padding(
               padding: EdgeInsets.all(8.0),
             ),
