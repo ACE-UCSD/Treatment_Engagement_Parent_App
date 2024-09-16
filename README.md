@@ -1,12 +1,23 @@
 # Treatment Engagement Parent App
 
+## Example Screens
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <img src="lib/images/IMG_4655.PNG" alt="login" width="250"/>
+    <img src="lib/images/IMG_4656.PNG" alt="home" width="250"/>
+    <img src="lib/images/IMG_4650.PNG" alt="times of day" width="250"/>
+    <img src="lib/images/IMG_4649.PNG" alt="trends" width="250"/>
+    <img src="lib/images/IMG_4651.PNG" alt="strategies" width="250"/>
+    <img src="lib/images/IMG_4652.PNG" alt="chat" width="250"/>
+</div>
+
 ## Instructions for Phone Setup
 1. Visit https://track-it-app-b875b.web.app/ from your mobile browser (i.e. Chrome, Safari, etc.)
 2. Tap on the share website icon
 3. Choose 'Add to Home Screen' (Optionally rename the shortcut)
 4. Sign up via email and wait for an authentication link
    1. If link is not sent please reach out
-5. After successful sign up and logging in, the app is ready for logging and you will be connected with your expected contacts shortly
+5. After successful sign up and log in, the app is ready for logging data, and you will be connected with your expected contacts shortly
 
 ## General App Notes
 - 'Trends' will not function properly until a sufficient amount of data has been logged
@@ -23,7 +34,7 @@
 
 #### Trends
 
-- Axis labels of the line chart randomly disappear
+- Axis label disappearance solved 09/04/2024
 
 #### ASE Strategies
 

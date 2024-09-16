@@ -27,6 +27,19 @@ class _MyHomePageState extends State<MyHomePage> {
     String userId = _auth.currentUser!.uid;
   }
 
+  void _incrementTapCount(String pageName) async {
+    String userId = _auth.currentUser!.uid;
+    DocumentReference pageDoc = _firestore
+        .collection('stats')
+        .doc(userId)
+        .collection(pageName)
+        .doc('stats');
+
+    pageDoc.set({
+      'taps': FieldValue.increment(1),
+    }, SetOptions(merge: true));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/calendar.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('Times of Day');
                                 Navigator.push(
                                   context,
                                   CupertinoPageRoute(
@@ -137,6 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/trends.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('Trends');
                                 Navigator.push(
                                   context,
                                   CupertinoPageRoute(
@@ -179,6 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/strategy.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('ASE Strategies');
                                 Navigator.push(
                                   context,
                                   CupertinoPageRoute(
@@ -216,6 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/manual.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('ASE Manual');
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -269,6 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/goals.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('Goals');
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -317,6 +335,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 AssetImage('lib/images/contact.png'),
                               ),
                               onPressed: () {
+                                _incrementTapCount('Contact Us');
                                 Navigator.push(
                                   context,
                                   CupertinoPageRoute(
@@ -340,6 +359,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
+                  const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 70, 15, 0),
+                      child: Text(
+                        'v0.4.6',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

@@ -1,10 +1,8 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:track_it/pages/home.dart';
 
 class TrendsPage extends StatefulWidget {
   const TrendsPage({super.key, required this.title});
@@ -20,18 +18,45 @@ class _TrendsPageState extends State<TrendsPage> {
   List<Map<String, dynamic>> _pieData = [];
   bool _loading = true;
   String _selectedRange = 'Past 7 Days';
-  final String _selectedScale = 'Turns Taken';
   int _turnsLastWeek = 0;
   int _turnsWeekBeforeLast = 0;
   bool _isTurnTrendUp = false;
   bool _loadingTurnTrend = true;
   String _percentChange = '';
+  DateTime? _startTime;
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
+
+  void _trackTimeSpent(String pageName) async {
+    if (_startTime != null) {
+      Duration timeSpent = DateTime.now().difference(_startTime!);
+      String userId = _auth.currentUser!.uid;
+      DocumentReference pageDoc = _firestore
+          .collection('stats')
+          .doc(userId)
+          .collection(pageName)
+          .doc('stats');
+
+      // Update time spent in Firestore
+      pageDoc.set({
+        'time': FieldValue.increment(timeSpent.inSeconds),
+        // Add seconds to time
+      }, SetOptions(merge: true));
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    _startTime = DateTime.now();
     _fetchAndProcessData();
     _loadPieData();
+  }
+
+  @override
+  void dispose() {
+    _trackTimeSpent('Trends');
+    super.dispose();
   }
 
   double dp(double val, int places) {
@@ -352,6 +377,15 @@ class _TrendsPageState extends State<TrendsPage> {
                         _fetchAndProcessData().then((_) => _loadPieData());
                       });
                     },
+                    underline: Container(
+                      height: 1,
+                      color: Colors.black54,
+                    ),
+                    // Add this for black dropdown arrow
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     height: 500,
@@ -367,30 +401,39 @@ class _TrendsPageState extends State<TrendsPage> {
                           duration: 2000,
                           shouldAlwaysShow: false,
                           activationMode: ActivationMode.singleTap),
-                      primaryXAxis: const CategoryAxis(
-                        //title: AxisTitle(text: 'Date'),
-                        labelRotation: 45,
-                        autoScrollingMode: AutoScrollingMode.end,
-                        labelIntersectAction: AxisLabelIntersectAction.rotate45,
-                      ),
-                      primaryYAxis: const NumericAxis(
-                        //title: AxisTitle(text: 'Count'),
-                        autoScrollingMode: AutoScrollingMode.end,
-                        labelIntersectAction: AxisLabelIntersectAction.rotate45,
-                      ),
-                      title: const ChartTitle(
+                      primaryXAxis: CategoryAxis(
+                          //title: AxisTitle(text: 'Date'),
+                          labelRotation: 45,
+                          autoScrollingMode: AutoScrollingMode.end,
+                          labelIntersectAction:
+                              AxisLabelIntersectAction.rotate45,
+                          axisLine: const AxisLine(color: Colors.black26),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          majorGridLines:
+                              const MajorGridLines(color: Colors.black12)),
+                      primaryYAxis: NumericAxis(
+                          //title: AxisTitle(text: 'Count'),
+                          autoScrollingMode: AutoScrollingMode.end,
+                          labelIntersectAction:
+                              AxisLabelIntersectAction.rotate45,
+                          axisLine: const AxisLine(color: Colors.black26),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          majorGridLines:
+                              const MajorGridLines(color: Colors.black12)),
+                      title: ChartTitle(
                           text: 'Trends in Turn Taking',
-                          textStyle: TextStyle(fontWeight: FontWeight.bold)),
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold)),
                       series: <LineSeries<Map<String, dynamic>, String>>[
                         LineSeries<Map<String, dynamic>, String>(
                           dataSource: _data,
                           markerSettings: const MarkerSettings(
                               isVisible: true,
-                              color: Colors.black,
+                              color: Colors.black87,
                               shape: DataMarkerType.circle,
                               height: 6.0,
                               width: 6.0),
-                          color: Colors.black,
+                          color: Colors.black87,
                           xValueMapper: (datum, _) => datum['date'] as String,
                           yValueMapper: (datum, _) =>
                               datum['turnsTaken'] as num,
@@ -402,11 +445,11 @@ class _TrendsPageState extends State<TrendsPage> {
                           dataSource: _data,
                           markerSettings: const MarkerSettings(
                               isVisible: true,
-                              color: Colors.grey,
+                              color: Colors.blueGrey,
                               shape: DataMarkerType.circle,
                               height: 6.0,
                               width: 6.0),
-                          color: Colors.grey,
+                          color: Colors.blueGrey,
                           xValueMapper: (datum, _) => datum['date'] as String,
                           yValueMapper: (datum, _) =>
                               dp((datum['timeSpent'] / 60), 2),
@@ -421,12 +464,25 @@ class _TrendsPageState extends State<TrendsPage> {
                   SizedBox(
                     height: 450,
                     child: SfCartesianChart(
-                      title: const ChartTitle(
-                          text: 'Turn Taking By Time of Day',
-                          textStyle: TextStyle(fontWeight: FontWeight.bold)
-                      ),
-                      primaryXAxis: const CategoryAxis(isInversed: true,),
-                      primaryYAxis: const NumericAxis(),
+                      //plotAreaBorderColor: Colors.black,
+                      //plotAreaBackgroundColor: Colors.black12,
+                      title: ChartTitle(
+                          text: 'Turn Taking/Time Spent: $_selectedRange',
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold)),
+                      primaryXAxis: CategoryAxis(
+                          isInversed: true,
+                          borderColor: Colors.black,
+                          axisLine: const AxisLine(color: Colors.black26),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          majorGridLines:
+                              const MajorGridLines(color: Colors.black12)),
+                      primaryYAxis: NumericAxis(
+                          borderColor: Colors.black,
+                          axisLine: const AxisLine(color: Colors.black26),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          majorGridLines:
+                              const MajorGridLines(color: Colors.black12)),
                       series: <BarSeries>[
                         BarSeries<Map<String, dynamic>, String>(
                           legendIconType: LegendIconType.rectangle,
@@ -436,7 +492,7 @@ class _TrendsPageState extends State<TrendsPage> {
                           yValueMapper: (Map<String, dynamic> data, _) =>
                               data['turnsTaken'] as int,
                           name: 'Turns Taken',
-                          color: Colors.black,
+                          color: Colors.black87,
                         ),
                         BarSeries<Map<String, dynamic>, String>(
                           legendIconType: LegendIconType.rectangle,
@@ -446,11 +502,11 @@ class _TrendsPageState extends State<TrendsPage> {
                           yValueMapper: (Map<String, dynamic> data, _) =>
                               dp((data['timeSpent'] / 60), 2),
                           name: 'Time Spent',
-                          color: Colors.grey,
+                          color: Colors.blueGrey,
                         ),
                       ],
                       legend: const Legend(
-                          isVisible: true,
+                        isVisible: true,
                         position: LegendPosition.top,
                       ),
                       tooltipBehavior: TooltipBehavior(enable: true),
