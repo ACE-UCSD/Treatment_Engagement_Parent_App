@@ -49,5 +49,4 @@ firebase.exe
 firebase*
 firebase.json
 lib/firebase_options.dart
-exports
 exports/*
