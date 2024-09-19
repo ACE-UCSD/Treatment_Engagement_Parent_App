@@ -364,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 70, 15, 0),
                       child: Text(
-                        'v0.4.6',
+                        'v0.4.8',
                         style: TextStyle(
                           fontSize: 10,
                           color: Colors.black54,
