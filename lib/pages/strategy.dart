@@ -35,7 +35,6 @@ class _StrategyPage extends State<StrategyPage> {
       // Update time spent in Firestore
       pageDoc.set({
         'time': FieldValue.increment(timeSpent.inSeconds),
-        // Add seconds to time
       }, SetOptions(merge: true));
     }
   }
