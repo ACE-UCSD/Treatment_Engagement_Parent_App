@@ -68,5 +68,5 @@ From this repository, in your terminal/command prompt run:
 3. After logging into IntelliJ, from the plugins tab, install Flutter
 4. Add the FlutterSDK bin file (in unzipped folder) to your Path in your system's environment variables
 5. In IntelliJ, add your FlutterSDK path (unzipped folder) at Settings > Languages and Frameworks > Flutter
-6. From your terminal, load firebase by executing `./firebase`, then `firebase login`, to deploy any changes to production `firebase deploy`
+6. From your terminal, load firebase by executing `.\firebase`, then `firebase login`, to deploy any changes to production `firebase deploy`
 7. After successful deployment, from your terminal in this repo run `git add .`, `git commit -m 'insert relevant message'`, `git push`

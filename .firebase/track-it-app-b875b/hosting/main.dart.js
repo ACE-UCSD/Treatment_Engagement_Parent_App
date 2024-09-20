@@ -114570,7 +114570,7 @@ A.avo.prototype={
 $1(a){var s=this,r=null,q=s.a,p=q.a,o=s.c,n=A.a4(o).i("a9<1,hJ<m>>")
 n=A.a5(new A.a9(o,new A.avk(),n),!0,n.i("aD.E"))
 p=A.b3k(A.ahv(r,new A.eA(4,A.fN(8),B.lx),r,r,r,r,r,r,!0,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,"Provider Type",r,r,r,r,r,r,r,r,r,r,r,r,r),n,new A.avl(q),p,t.N)
-return A.oq(A.b([A.kQ(B.HH,new A.avm(a),r),A.aR5(B.an4,new A.avn(q,s.b,a,s.d),r)],t.p),p,B.amA)},
+return A.oq(A.b([A.kQ(B.HH,new A.avm(a),r),A.aR5(B.an4,new A.avn(q,s.b,a,s.d),r)],t.p),p,B.amB)},
 $S:35}
 A.avk.prototype={
 $1(a){var s=null
@@ -114993,7 +114993,7 @@ A.ayH.prototype={
 $0(){A.cF(this.a,!1).dK()},
 $S:0}
 A.ayu.prototype={
-$1(a){return A.oq(A.b([A.kQ(B.amH,new A.ays(this.a,this.b,a),null),A.kQ(B.HH,new A.ayt(a),null)],t.p),null,B.amQ)},
+$1(a){return A.oq(A.b([A.kQ(B.amI,new A.ays(this.a,this.b,a),null),A.kQ(B.HH,new A.ayt(a),null)],t.p),null,B.amQ)},
 $S:35}
 A.ays.prototype={
 $0(){var s="contacts",r=this.a,q=r.e.geO().a.c.a.a,p=r.d,o=A.e5(p,p.gcL().cq(s)).cv(q),n=this.b,m=$.vp(),l=m.JM(0),k=t.K,j=t.X
@@ -115091,7 +115091,7 @@ n=A.ch(A.b([A.b_(p,A.hS(p,B.T5,60,new A.aE1(m,a),p,p,p),B.n,p,p,new A.bH(B.dj,p,
 s=A.fN(20)
 s=A.fr(A.b([n,B.r1,A.ch(A.b([A.b_(p,A.hS(p,B.T3,60,new A.aE2(m,a),p,p,p),B.n,p,p,new A.bH(B.dj,p,p,s,p,p,B.K),p,120,p,p,p,p,p,120),B.c3,B.an3],l),B.B,B.D,B.J)],l),B.B,B.cI,B.J)
 n=A.fN(20)
-n=A.ch(A.b([A.b_(p,A.hS(p,B.T4,60,new A.aE3(m,a),p,p,p),B.n,p,p,new A.bH(B.dj,p,p,n,p,p,B.K),p,120,p,p,p,p,p,120),B.c3,B.amE],l),B.B,B.D,B.J)
+n=A.ch(A.b([A.b_(p,A.hS(p,B.T4,60,new A.aE3(m,a),p,p,p),B.n,p,p,new A.bH(B.dj,p,p,n,p,p,B.K),p,120,p,p,p,p,p,120),B.c3,B.amF],l),B.B,B.D,B.J)
 r=A.fN(20)
 r=A.fr(A.b([n,B.r1,A.ch(A.b([A.b_(p,A.hS(p,B.T1,60,new A.aE4(m,a),p,p,p),B.n,p,p,new A.bH(B.dj,p,p,r,p,p,B.K),p,120,p,p,p,p,p,120),B.c3,B.amT],l),B.B,B.D,B.J)],l),B.B,B.cI,B.J)
 n=A.fN(20)
@@ -115470,7 +115470,7 @@ A.aDL.prototype={
 $1(a){return B.q9},
 $S:104}
 A.aDK.prototype={
-$1(a){return A.oq(A.b([A.kQ(B.eX,new A.aDJ(a),null)],t.p),B.amK,B.amG)},
+$1(a){return A.oq(A.b([A.kQ(B.eX,new A.aDJ(a),null)],t.p),B.amK,B.amH)},
 $S:35}
 A.aDJ.prototype={
 $0(){A.cF(this.a,!1).dK()},
@@ -115575,7 +115575,7 @@ return A.C($async$HZ,r)},
 m(){this.HZ("ASE Strategies")
 this.aw()},
 H(a){var s,r=this,q=null,p=A.hS(q,B.fG,q,new A.aGf(a),q,q,q),o=t.b
-p=A.vA(q,!0,A.b_(q,q,B.n,q,q,new A.bH(q,q,q,q,q,new A.dL(B.aB,B.aV,B.ay,A.b([B.aF,B.aF],o),q,q),B.K),q,q,q,q,q,q,q,q),p,B.amB)
+p=A.vA(q,!0,A.b_(q,q,B.n,q,q,new A.bH(q,q,q,q,q,new A.dL(B.aB,B.aV,B.ay,A.b([B.aF,B.aF],o),q,q),B.K),q,q,q,q,q,q,q,q),p,B.amC)
 o=A.b([B.aF,B.cZ],o)
 s=t.p
 return A.pR(p,q,A.hb(A.b_(q,A.aMe(A.b([r.zh(a,A.b([r.ft("Use baby talk","Remember to speak to your child in a playful manner. Use exaggerated intonation, simple grammar, high pitch, and slow tempo.",""),r.ft("Face to face positioning","Children learn by watching their parent's face. When interacting with your child, position yourself in front of your child.",""),r.ft("Face directing activities","During playtime engage in face-directing activities such as making faces and exaggerating facial expressions, smiling and exaggerating the speech sounds your child is in the process of learning.","Peek a boo\nFace painting\nBlowing bubbles\nBlowing kisses\nBrushing hair\nBlowing up small balloons"),r.ft("Be silly!","Activities do not have to be in a set order or sequence! Have fun with your child and take opportunities for tickling and sharing enjoyment.",""),r.ft("Social routines",'Many children enjoy routines like "pat-a-cake" and "twinkle-twinkle". These routines encourage verbal language, social engagement, and nonverbal communication like gestures. Make it even more fun by embellishing your gestures and expressions to make it more salient for your child and encourage social attention.',"Itsy Bitsy Spider\nWheels on the bus\nPat a cake"),r.ft("Play singing","Many children enjoy singing, or listening to others sing. Does your child? If so, sing while they are looking at you.","")],s),B.PD,B.vl,"Strategies to Enhance Social Attention"),B.np,r.zh(a,A.b([r.ft("Use predictable phrases","Establishing predictable routines with turn-taking and using predictable phrases will help your child anticipate what is expected next This will boost your child's confidence and success in turn-taking.",'"My turn. Your turn!"\n"You go. I go!"'),r.ft("Take short turns and accept short turns from your child","When you first start turn-taking, expect that your child's turn will be short. To support your child in feeling successful, treat any sound, look or gesture as your child's turn. Make sure to pause long enough to allow your child to engage in any action that could constitute a turn and make sure to take a turn that is no more than twice the length of your child's turn.",""),r.ft("Establish turn-taking routines and games","Watch what activities your child likes to do and make a game out of it.","Pushing a ball back and forth\nStacking thick Lego blocks\nDropping objects into a cup"),r.ft("Expand","Use initial routines as a foundation and expand activites by adding on new routines. This will increase your child's length of social attention, social interest, and communication behaviors.",""),r.ft("Gentle blocking",'Playfully block access to a toy by holding it out of reach or covering it with your hand to increase your child\'s eye contact and shared enjoyment. Make it fun by using a funny noise, like "ah!" or "ope!" during blocking. Try to wait until your child uses eye contact with or without a word or word attempt to take her turn.',""),r.ft("TrackiT!","Look at your app daily in the 'Trends' section to know how often you are successfully taking turns with your child and try to increase your turn taking number by at least 2.","")],s),B.u3,B.Sx,"Strategies to Enhance Turn-Taking"),B.np,r.zh(a,A.b([r.ft("Follow your child's lead","Children will be more motivated to interact if they are engaging in activities that they are interested in.",""),r.ft("Reinforce all attempts","A primary goal is to encourage your child and keep them motivated and engaged; so it is important to reinforce any attempt at social engagement, talk, play, or responding to a prompt or instruction.",""),r.ft("Imitate your child","Many children enjoy being copied, and imitating your child sends the message that their actions, sounds, and words have meaning to others.",""),r.ft("Child choice","","")],s),B.Pp,B.Sv,"Strategies to Enhance Child Motivation"),B.np,r.zh(a,A.b([r.ft("It's a family affair","",""),r.ft("Model play that is at your child's level as well as play that is slightly in advance","",""),r.ft("Natural reinforcer","","")],s),B.u5,B.SD,"Strategies to Enhance Therapy")],s),q,q,!1,!1),B.n,q,q,new A.bH(q,q,q,q,q,new A.dL(B.aB,B.aV,B.ay,o,q,q),B.K),q,q,q,q,B.uE,q,q,q),q,q))},
@@ -119479,9 +119479,9 @@ B.aV=new A.df(1,1)
 B.Rf=new A.ap(0,70,15,0)
 B.S=new A.j(2315255808)
 B.akg=new A.u(!0,B.S,null,null,null,null,10,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.amI=new A.bG("v0.4.9",null,B.akg,null,null,null,null,null,null,null,null,null,null,null)
-B.a34=new A.b8(B.Rf,B.amI,null)
-B.Ix=new A.d5(B.aV,null,null,B.a34,null)
+B.amx=new A.bG("v0.4.91",null,B.akg,null,null,null,null,null,null,null,null,null,null,null)
+B.a32=new A.b8(B.Rf,B.amx,null)
+B.Ix=new A.d5(B.aV,null,null,B.a32,null)
 B.Iy=new A.fi(0,0)
 B.Iz=new A.fi(0,1)
 B.IA=new A.fi(0,-1)
@@ -119942,19 +119942,19 @@ B.k=new A.j(4294967295)
 B.Lz=new A.oC(null,B.k,null,null,null,null,null)
 B.amv=new A.bG("No users available",null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.LA=new A.eK(B.y,null,null,B.amv,null)
-B.amC=new A.bG("No chat channel found",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.LB=new A.eK(B.y,null,null,B.amC,null)
+B.amD=new A.bG("No chat channel found",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.LB=new A.eK(B.y,null,null,B.amD,null)
 B.amZ=new A.bG("No contacts available",null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.LC=new A.eK(B.y,null,null,B.amZ,null)
 B.ar2=new A.ava(0,"material")
 B.LN=new A.vQ(4,null,null,null,null,null,null,null)
 B.fj=new A.eK(B.y,null,null,B.LN,null)
-B.amy=new A.bG("Error fetching chat data",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.LD=new A.eK(B.y,null,null,B.amy,null)
+B.amz=new A.bG("Error fetching chat data",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.LD=new A.eK(B.y,null,null,B.amz,null)
 B.amw=new A.bG("Error fetching contacts",null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.LH=new A.eK(B.y,null,null,B.amw,null)
-B.amz=new A.bG("Error fetching users",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.LI=new A.eK(B.y,null,null,B.amz,null)
+B.amA=new A.bG("Error fetching users",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.LI=new A.eK(B.y,null,null,B.amA,null)
 B.tD=new A.P3(0,"near")
 B.of=new A.rk(1,"outer")
 B.bl=new A.rk(2,"top")
@@ -120130,8 +120130,8 @@ B.J=new A.Sh(1,"max")
 B.B=new A.rz(2,"center")
 B.cs=new A.auL(1,"down")
 B.cE=new A.ap(8,8,8,8)
-B.a32=new A.b8(B.cE,null,null)
-B.VG=A.b(s([B.a32]),t.p)
+B.a33=new A.b8(B.cE,null,null)
+B.VG=A.b(s([B.a33]),t.p)
 B.aeE=new A.Gj(B.a9,B.D,B.J,B.B,null,B.cs,null,B.VG,null)
 B.Vo=A.b(s([B.aeE]),t.p)
 B.PY=new A.C5(B.ad,B.D,B.J,B.B,null,B.cs,null,B.Vo,null)
@@ -123810,14 +123810,14 @@ B.nw=new A.u(!0,null,null,null,null,null,14,B.aH,null,null,null,null,null,null,n
 B.an2=new A.bG("",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
 B.a30=new A.b8(B.cE,B.an2,null)
 B.LE=new A.eK(B.y,null,null,B.a30,null)
-B.amx=new A.bG("Activity",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
-B.a33=new A.b8(B.cE,B.amx,null)
-B.LJ=new A.eK(B.y,null,null,B.a33,null)
-B.amF=new A.bG("Time Spent (mins)",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
-B.a36=new A.b8(B.cE,B.amF,null)
+B.amy=new A.bG("Activity",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
+B.a34=new A.b8(B.cE,B.amy,null)
+B.LJ=new A.eK(B.y,null,null,B.a34,null)
+B.amG=new A.bG("Time Spent (mins)",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
+B.a36=new A.b8(B.cE,B.amG,null)
 B.LG=new A.eK(B.y,null,null,B.a36,null)
-B.amD=new A.bG("# of Turns Taken",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
-B.a2Z=new A.b8(B.cE,B.amD,null)
+B.amE=new A.bG("# of Turns Taken",null,B.nw,null,null,null,null,null,null,null,null,null,null,null)
+B.a2Z=new A.b8(B.cE,B.amE,null)
 B.LF=new A.eK(B.y,null,null,B.a2Z,null)
 B.a_c=A.b(s([B.LE,B.LJ,B.LG,B.LF]),t.p)
 B.ahQ=new A.kP(B.Jt,B.a_c)
@@ -124157,11 +124157,11 @@ B.akX=new A.u(!0,B.q,null,"Roboto",B.aa,null,null,null,null,null,null,null,null,
 B.al7=new A.u(!0,B.q,null,"Roboto",B.aa,null,null,null,null,null,null,null,null,null,null,null,null,B.m,null,null,null,"blackHelsinki labelSmall",null,null,null,null)
 B.amt=new A.en(B.alV,B.aiX,B.ajX,B.akW,B.al9,B.ail,B.ajw,B.air,B.akF,B.alm,B.ak7,B.alo,B.alz,B.akX,B.al7)
 B.amu=new A.bG("Your data has been successfully submitted.",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.amA=new A.bG("Select Provider Type",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.amB=new A.bG("ASE Strategies",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.amE=new A.bG("ASE Strategies",null,B.dN,null,null,null,null,null,null,null,null,null,null,null)
-B.amG=new A.bG("Submission Unsuccessful",null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.amH=new A.bG("Delete",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.amB=new A.bG("Select Provider Type",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.amC=new A.bG("ASE Strategies",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.amF=new A.bG("ASE Strategies",null,B.dN,null,null,null,null,null,null,null,null,null,null,null)
+B.amH=new A.bG("Submission Unsuccessful",null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.amI=new A.bG("Delete",null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.amK=new A.bG("Please enter valid numerical entries rounded to the nearest whole number.",null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.amL=new A.bG("Contact Us",null,B.dN,null,null,null,null,null,null,null,null,null,null,null)
 B.amM=new A.bG("Add Contacts",null,null,null,null,null,null,null,null,null,null,null,null,null)
