@@ -27,7 +27,7 @@ class _StrategyPage extends State<StrategyPage> {
       Duration timeSpent = DateTime.now().difference(_startTime!);
       String userId = _auth.currentUser!.uid;
       DocumentReference pageDoc = _firestore
-          .collection('stats')
+          .collection('usage')
           .doc(userId)
           .collection(pageName)
           .doc('stats');

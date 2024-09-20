@@ -29,14 +29,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementTapCount(String pageName) async {
     String userId = _auth.currentUser!.uid;
-    DocumentReference pageDoc = _firestore
-        .collection('stats')
-        .doc(userId)
-        .collection(pageName)
-        .doc('stats');
+    DocumentReference userDoc = _firestore
+        .collection('usage')
+        .doc(userId);
 
-    pageDoc.set({
-      'taps': FieldValue.increment(1),
+    userDoc.set({
+      pageName: {
+        'taps': FieldValue.increment(1),   // Increment tap count
+      }
     }, SetOptions(merge: true));
   }
 

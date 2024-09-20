@@ -30,20 +30,24 @@ class _ChatterScreenState extends State<ChatterScreen> {
 
   void _trackTimeSpent(String pageName) async {
     if (_startTime != null) {
+      // Calculate the time spent
       Duration timeSpent = DateTime.now().difference(_startTime!);
       String userId = _auth.currentUser!.uid;
-      DocumentReference pageDoc = _firestore
-          .collection('stats')
-          .doc(userId)
-          .collection(pageName)
-          .doc('stats');
 
-      // Update time spent in Firestore
-      pageDoc.set({
-        'time': FieldValue.increment(timeSpent.inSeconds), // Add seconds to time
+      // Reference the user's document directly
+      DocumentReference userDoc = _firestore
+          .collection('usage')
+          .doc(userId);
+
+      // Update the time spent for the specific page
+      userDoc.set({
+        pageName: {
+          'time': FieldValue.increment(timeSpent.inSeconds),  // Increment time spent in seconds
+        }
       }, SetOptions(merge: true));
     }
   }
+
 
   @override
   void initState() {

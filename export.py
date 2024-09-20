@@ -25,7 +25,7 @@ for doc in docs:
 
 # Format the output file name with the collection and today's date
 today = datetime.now().strftime('%Y-%m-%d')
-output_filename = f'{collection}_{today}.json'
+output_filename = f'exports/{collection}_{today}.json'
 
 # Write the data to a JSON file
 with open(output_filename, 'w') as f:
