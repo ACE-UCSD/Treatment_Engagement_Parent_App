@@ -53,10 +53,19 @@
 - No known issues
 - Order by most recent message
 - Add notification of message
-- Mark providers (i.e. Primary Therapist, Secondary, etc.)
 
 ## Exporting Data
 
 From this repository, in your terminal/command prompt run:
 
 `python export.py \path\to\credentials.json {collection_name}`
+
+## Instructions for Installation
+
+1. Install and setup Git, IntelliJ via JetBrains, FlutterSDK (for web)
+    - Unzip this repository and FlutterSDK
+2. Turn on developer mode on your system if applicable
+3. After logging into IntelliJ, from the plugins tab, install Flutter
+4. Add the FlutterSDK bin file (in unzipped folder) to your Path in your system's environment variables
+5. In IntelliJ, add your FlutterSDK path (unzipped folder) at Settings > Languages and Frameworks > Flutter
+6. From your terminal, load firebase by executing firebase login or .\firebase, then firebase login
