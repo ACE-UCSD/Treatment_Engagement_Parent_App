@@ -338,8 +338,8 @@ class _ContactListScreenState extends State<ContactListScreen> {
                                       size: 40),
                                   title: Text(
                                     type.isNotEmpty
-                                        ? '$type Provider: $email'
-                                        : 'Provider: $email',
+                                        ? '$type Provider'
+                                        : 'Provider',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -353,7 +353,7 @@ class _ContactListScreenState extends State<ContactListScreen> {
                                       MaterialPageRoute(
                                         builder: (context) => ChatterScreen(
                                           receiverId: receiverId,
-                                          chatName: '$type Provider: $email',
+                                          chatName: '$type Provider',
                                         ),
                                       ),
                                     );
