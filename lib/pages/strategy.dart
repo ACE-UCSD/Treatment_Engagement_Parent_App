@@ -24,17 +24,20 @@ class _StrategyPage extends State<StrategyPage> {
 
   void _trackTimeSpent(String pageName) async {
     if (_startTime != null) {
+      // Calculate the time spent
       Duration timeSpent = DateTime.now().difference(_startTime!);
       String userId = _auth.currentUser!.uid;
-      DocumentReference pageDoc = _firestore
-          .collection('usage')
-          .doc(userId)
-          .collection(pageName)
-          .doc('stats');
 
-      // Update time spent in Firestore
-      pageDoc.set({
-        'time': FieldValue.increment(timeSpent.inSeconds),
+      // Reference the user's document directly
+      DocumentReference userDoc = _firestore
+          .collection('usage')
+          .doc(userId);
+
+      // Update the time spent for the specific page
+      userDoc.set({
+        pageName: {
+          'time': FieldValue.increment(timeSpent.inSeconds),  // Increment time spent in seconds
+        }
       }, SetOptions(merge: true));
     }
   }
